@@ -20,6 +20,9 @@ android {
         versionName = "1.67-icybard.1"
         // This personal branch never checks for or offers upstream releases.
         buildConfigField("boolean", "CHECK_FOR_UPDATES", "false")
+        buildConfigField("String", "PERSONAL_VERSION_LABEL", "\"Icybard 1.0\"")
+        // Keep its revival account separate from an upstream installation on the same TV.
+        resValue("string", "revival_account_type", applicationId!!)
         // `./gradlew -Pdiag ...`: a build for one reporter's TV whose logcat shows no app lines;
         // see system/DiagLog.kt.
         val diag = project.hasProperty("diag")

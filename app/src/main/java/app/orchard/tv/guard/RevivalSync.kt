@@ -16,6 +16,7 @@ import android.os.Handler
 import android.os.IBinder
 import android.os.Looper
 import android.util.Log
+import app.orchard.tv.BuildConfig
 
 /**
  * Brings Home Guard back after the firmware kills Aerial, where the notification listener cannot.
@@ -33,16 +34,16 @@ import android.util.Log
  */
 object RevivalSync {
     const val TAG = "AerialGuard"
-    private const val ACCOUNT_TYPE = "app.orchard.tv"
     private const val AUTHORITY = "settings"
 
     fun ensure(context: Context) {
         // Accounts live in credential storage.
         if (!GuardSetup.isUserUnlocked(context)) return
         runCatching {
+            val accountType = BuildConfig.APPLICATION_ID
             val accounts = AccountManager.get(context)
-            val account = accounts.getAccountsByType(ACCOUNT_TYPE).firstOrNull()
-                ?: Account("Aerial", ACCOUNT_TYPE).also {
+            val account = accounts.getAccountsByType(accountType).firstOrNull()
+                ?: Account("Aerial", accountType).also {
                     if (!accounts.addAccountExplicitly(it, null, null)) return
                     Log.i(TAG, "added the account that lets the sync framework revive Aerial")
                 }

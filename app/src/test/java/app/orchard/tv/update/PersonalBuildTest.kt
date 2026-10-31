@@ -2,6 +2,7 @@ package app.orchard.tv.update
 
 import android.content.Context
 import app.orchard.tv.BuildConfig
+import app.orchard.tv.R
 import org.junit.Assert.assertEquals
 import org.junit.Assert.assertFalse
 import org.junit.Assert.assertNull
@@ -17,6 +18,8 @@ class PersonalBuildTest {
     @Test
     fun personalBuildHasIndependentIdentity() {
         assertEquals("app.orchard.tv.icybard", BuildConfig.APPLICATION_ID)
+        assertEquals(BuildConfig.APPLICATION_ID, RuntimeEnvironment.getApplication().getString(R.string.revival_account_type))
+        assertEquals("Icybard 1.0", BuildConfig.PERSONAL_VERSION_LABEL)
         assertFalse(BuildConfig.CHECK_FOR_UPDATES)
     }
 
