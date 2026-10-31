@@ -12,12 +12,14 @@ android {
     compileSdk = 36
 
     defaultConfig {
-        applicationId = "app.orchard.tv"
+        applicationId = "app.orchard.tv.icybard"
         // Android 5.0. Compose 1.10 and later need 6.0, so the Compose BOM below stays on 1.9.
         minSdk = 21
         targetSdk = 34
         versionCode = 81
-        versionName = "1.67"
+        versionName = "1.67-icybard.1"
+        // This personal branch never checks for or offers upstream releases.
+        buildConfigField("boolean", "CHECK_FOR_UPDATES", "false")
         // `./gradlew -Pdiag ...`: a build for one reporter's TV whose logcat shows no app lines;
         // see system/DiagLog.kt.
         val diag = project.hasProperty("diag")
